@@ -65,20 +65,6 @@ def rand_word():
     return word
 
 
-def lex_set(filename):
-    """
-    Make a set of words by reading them from a file. Assumes each line contains
-    a single word.
-    """
-    ret = set()
-    with open(filename) as f:
-        for line in f:
-            ret.add(line.strip())
-    return ret
-
-
-test_lex = lex_set(wordfile)
-
 def test_bloom_filter(hash_fn, hash_size, hash_qty, lex):
     """
     Build a Bloom filter and test its precision
@@ -95,6 +81,20 @@ def test_bloom_filter(hash_fn, hash_size, hash_qty, lex):
 
     return prec_fails / 10000
 
+
+def lex_set(filename):
+    """
+    Make a set of words by reading them from a file. Assumes each line contains
+    a single word.
+    """
+    ret = set()
+    with open(filename) as f:
+        for line in f:
+            ret.add(line.strip())
+    return ret
+
+
+test_lex = lex_set(wordfile)
 
 def run_tests():
     """
